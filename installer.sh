@@ -3,17 +3,20 @@
 
 #Dev Setup for Ubuntu
 #@author Jasper
-if [ "$EUID" -ne 0 ]
-  then echo "Please me run as root"
-  exit
-fi
-#init
+
 
 print_status() {
     echo "#######################################"
     echo ">> $1"
     echo "#######################################"
 }
+
+#check if run as root
+if [ "$EUID" -ne 0 ]
+  then print_status "Please me run as root"
+  exit
+fi
+#init
 
 mkdir "SetupDir"
 cd "SetupDir"
