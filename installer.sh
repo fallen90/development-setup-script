@@ -18,9 +18,6 @@ if [ "$EUID" -ne 0 ]
 fi
 #init
 
-mkdir "SetupDir"
-cd "SetupDir"
-
 DISTRO=$(lsb_release -c -s)
 
 #add ppa
