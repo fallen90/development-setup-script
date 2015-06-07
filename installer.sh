@@ -108,13 +108,17 @@ killall sublime_text
 cd "`find / -name "sublime-text-3"`"
 cd "`find .. -name "Installed Packages"`"
 wget https://packagecontrol.io/Package%20Control.sublime-package
+chmod 755 "Package Control.sublime-package"
 #download sublime settings and other preferences
 cd "`find .. -name "HTML-CSS-JS Prettify"`"
 wget https://raw.githubusercontent.com/fallen90/sublime-settings/master/.jsbeautifyrc --output-document=".jsbeautifyrc"
+chmod 755 ".jsbeautifyrc"
 cd "`find .. -name "JSHint Gutter"`"
 wget https://raw.githubusercontent.com/fallen90/sublime-settings/master/.jshintrc --output-document=".jshintrc"
+chmod 755 ".jshintrc"
 cd "`find .. -name "User"`"
-wget https://raw.githubusercontent.com/fallen90/sublime-settings/master/Package%20Control.sublime-settings --output-document=".Package Control.sublime-settings"
+wget https://raw.githubusercontent.com/fallen90/sublime-settings/master/Package%20Control.sublime-settings --output-document="Package Control.sublime-settings"
+chmod 755 "Package Control.sublime-settings"
 
 
 clear
