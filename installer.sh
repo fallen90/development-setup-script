@@ -67,34 +67,39 @@ clear
 print_status "Installing the rest of utitilies and dependencies"
 apt-get install -y apt-transport-https lsb-release ansible nfs-common nfs-kernel-server nginx php5-fpm php5-cli php5-curl vim curl git python-software-properties variety unity-tweak-tool adobe-flashplugin vlc ubuntu-restricted-extras gstreamer0.10-ffmpeg compizconfig-settings-manager gimp subversion preload sublime-text-installer google-chrome-stable python php5-mcrypt php5enmod nodejs build-essential libssl-dev
 
+#pause to check for errors
+print_status "Sleeping for 2 minutes to check for errors"
+sleep 120
 #install composer
-clear
 print_status "Installing composer"
 curl -sS https://getcomposer.org/installer | php
 mv composer.phar /usr/local/bin/composer
+
+
 #include composer bin directory to path
 print_status "Adding composer to path"
 export PATH=$PATH:~/.composer/vendor/bin
+
 #install laravel 5
 print_status "Installing Laravel 5 to global scope"
 composer global require "laravel/installer=~1.1"
-#install bower
+
 clear
-print_status "Installing bower dependency manager"
-npm install -g bower
-#install yeoman
-clear
-print_status "Installing yeoman"
-npm install -g yo
+print_status "Installing yeoman and required tools"
+npm install -g yo bower grunt-cli gulp
+
+
 #install angularjs-generator
 clear
 print_status "Installing angularjs generator for yeoman"
-npm install -g generator-angularjs
+npm install -g generator-angular
 
-#install grunt
+#install React
 clear
-echo "Installing grunt build system"
-print_status install -g grunt
+print_status "Installing React and other tools. This will cache this tools for later."
+bower install -g react
+npm install -g gulp-react react-tools
+
 
 #finish up installations
 clear
