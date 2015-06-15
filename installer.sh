@@ -20,6 +20,10 @@ fi
 
 DISTRO=$(lsb_release -c -s)
 
+# FIREWALL FIX ALL THANKS TO JASPER LORD MASTER RACE
+# Special mention: IT DEPARTMENT
+sudo rm -rf /var/lib/apt/lists/* && apt-get update
+
 #add ppa
 print_status "Adding LaunchPad PPA Repository"
 add-apt-repository -y ppa:webupd8team/sublime-text-3
