@@ -18,10 +18,9 @@ if [ "$EUID" -ne 0 ]
 fi
 #init
 
-DISTRO=$(lsb_release -c -s)
-
 # FIREWALL FIX ALL THANKS TO JASPER LORD MASTER RACE
 # Special mention: IT DEPARTMENT
+print_status "Cleaning up. Because, It up again, for one month"
 sudo rm -rf /var/lib/apt/lists/* && apt-get update
 
 #add ppa
@@ -37,15 +36,15 @@ sudo sh -c 'echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /et
 clear
 echo "add nodesource key signing to default keyring and creating sources list"
 wget -qO- https://deb.nodesource.com/gpgkey/nodesource.gpg.key | apt-key add -
-echo 'deb https://deb.nodesource.com/node_0.10 ${DISTRO} main' > /etc/apt/sources.list.d/nodesource.list
-echo 'deb-src https://deb.nodesource.com/node_0.10 ${DISTRO} main' >> /etc/apt/sources.list.d/nodesource.list
+echo 'deb https://deb.nodesource.com/node_0.10 `lsb_release -c -s` main' > /etc/apt/sources.list.d/nodesource.list
+echo 'deb-src https://deb.nodesource.com/node_0.10 `lsb_release -c -s` main' >> /etc/apt/sources.list.d/nodesource.list
 
 
 #update list
 clear
 print_status "Updating list"
-apt-get update
-apt-get upgrade
+apt-get -y update
+apt-get -y upgrade
 apt-get dist-upgrade
 
 #enable workspaces
@@ -56,10 +55,7 @@ gsettings set org.compiz.core:/org/compiz/profiles/unity/plugins/core/ hsize 2
 #if all fails,
 clear
 print_status "Checking for missing updates"
-apt-get update --fix-missing
-clear
-print_status "Adding other package managers"
-apt-get install aptitude synaptic gdebi-core
+apt-get -y update --fix-missing
 
 #install default lamp-stack
 clear
@@ -69,7 +65,7 @@ apt-get install -y lamp-server^
 #install the rest
 clear
 print_status "Installing the rest of utitilies and dependencies"
-apt-get install -y apt-transport-https lsb-release ansible nfs-common nfs-kernel-server nginx php5-fpm php5-cli php5-curl vim curl git python-software-properties variety unity-tweak-tool adobe-flashplugin vlc ubuntu-restricted-extras gstreamer0.10-ffmpeg compizconfig-settings-manager gimp subversion preload sublime-text-installer google-chrome-stable python php5-mcrypt php5enmod nodejs build-essential libssl-dev
+apt-get install -y apt-transport-https ansible nfs-common nfs-kernel-server nginx php5-fpm php5-cli php5-curl git python-software-properties variety unity-tweak-tool adobe-flashplugin ubuntu-restricted-extras gstreamer0.10-ffmpeg compizconfig-settings-manager gimp subversion preload sublime-text-installer google-chrome-stable python php5-mcrypt php5enmod nodejs build-essential libssl-dev
 
 #pause to check for errors
 print_status "Sleeping for 2 minutes to check for errors"
@@ -111,7 +107,7 @@ print_status "setting up sublime text 3"
 #install package control for sublime text 3
 #kill all instances of sublime
 killall sublime_text
-cd "`find / -name "sublime-text-3"`"
+cd "`find ~/ -name "sublime-text-3"`"
 cd "`find .. -name "Installed Packages"`"
 wget https://packagecontrol.io/Package%20Control.sublime-package
 chmod 755 "Package Control.sublime-package"
@@ -126,6 +122,11 @@ cd "`find .. -name "User"`"
 wget https://raw.githubusercontent.com/fallen90/sublime-settings/master/Package%20Control.sublime-settings --output-document="Package Control.sublime-settings"
 chmod 755 "Package Control.sublime-settings"
 
+
+clear
+print_status "Installing NVM"
+wget -qO- https://raw.githubusercontent.com/creationix/nvm/v0.25.4/install.sh | bash
+nvm 0.12
 
 clear
 print_status "Setup done, if there are errors, please rerun installer. Will reboot in 10 seconds"
