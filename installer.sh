@@ -26,15 +26,14 @@ sudo rm -rf /var/lib/apt/lists/* && apt-get update
 #add ppa
 print_status "Adding LaunchPad PPA Repository"
 add-apt-repository -y ppa:webupd8team/sublime-text-3
-add-apt-repository -y ppa:peterlevi/ppa
 add-apt-repository -y ppa:mc3man/trusty-media
 add-apt-repository -y ppa:ondrej/php5
 add-apt-repository -y ppa:rquillo/ansible
 wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
-sudo sh -c 'echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list'
+# sudo sh -c 'echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list'
 
 clear
-echo "add nodesource key signing to default keyring and creating sources list"
+print_status "add nodesource key signing to default keyring and creating sources list"
 wget -qO- https://deb.nodesource.com/gpgkey/nodesource.gpg.key | apt-key add -
 echo 'deb https://deb.nodesource.com/node_0.10 `lsb_release -c -s` main' > /etc/apt/sources.list.d/nodesource.list
 echo 'deb-src https://deb.nodesource.com/node_0.10 `lsb_release -c -s` main' >> /etc/apt/sources.list.d/nodesource.list
