@@ -65,11 +65,9 @@ apt-get install -y lamp-server^
 #install the rest
 clear
 print_status "Installing the rest of utitilies and dependencies"
-apt-get install -y apt-transport-https ansible nfs-common nfs-kernel-server nginx php5-fpm php5-cli php5-curl git python-software-properties variety unity-tweak-tool adobe-flashplugin ubuntu-restricted-extras gstreamer0.10-ffmpeg compizconfig-settings-manager gimp subversion preload sublime-text-installer google-chrome-stable python php5-mcrypt php5enmod nodejs build-essential libssl-dev
+apt-get install -y apt-transport-https php5-fpm php5-cli php5-curl git preload sublime-text-installer google-chrome-stable python php5-mcrypt php5enmod nodejs build-essential libssl-dev
 
-#pause to check for errors
-print_status "Sleeping for 2 minutes to check for errors"
-sleep 120
+
 #install composer
 print_status "Installing composer"
 curl -sS https://getcomposer.org/installer | php
