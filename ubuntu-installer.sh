@@ -47,6 +47,12 @@ install_devtools(){
 install_node(){
 	clear
 	print_status "Install NodeJS"
+	apt-get install build-essential libssl-dev
+	wget -qO- https://raw.githubusercontent.com/creationix/nvm/v0.28.0/install.sh | bash
+	source ~/.profile
+	nvm install 0.12.7
+	# this fixes node on root
+	n=$(which node);n=${n%/bin/node}; chmod -R 755 $n/bin/*; sudo cp -r $n/{bin,lib,share} /usr/local
 }
 
 
